@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Disease Recognition</title>
+  <link rel="icon" href="../static/images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white d-flex align-items-center" href="#">
+        <img src="../static/images/logo.svg" alt="" width="30" height="30" class="me-2">
+        TEAM 5 AgriTech
+      </a>
+    </div>
+  </nav>
+
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="carousel-text-wrapper">
+          <h1 class="carousel-text-title">🌿 Plant Disease Recognition</h1>
+          <div class="form-box">
+            <form action="/upload/" method="POST" enctype="multipart/form-data">
+              <h2 class="mb-4 text-white">Upload Leaf Image</h2>
+              <div class="input-box">
+                <input type="file" accept="image/png, image/jpeg" name="img" class="form-control" required>
+              </div>
+              <div class="input-box">
+                <button type="submit" class="btn btn-outline-light px-5">Analyze</button>
+              </div>
+            </form>
+
+            {% if result %}
+            <div class="result-container">
+              <div class="result-box shadow-lg">
+                <div class="result-img-container">
+                  <img src="{{ imagepath }}" alt="uploaded image" class="result-image">
+                </div>
+                <div class="result-text">
+                  <h3>🩺 Diagnosis Result</h3>
+                  <p><strong>Disease Identified:</strong> {{ prediction['name'] }}</p>
+                  <p><strong>Likely Cause:</strong> {{ prediction['cause'] }}</p>
+                  <p><strong>Suggested Treatment:</strong> {{ prediction['cure'] }}</p>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center text-white bg-dark py-3 mt-5">
+    <small>&copy; 2025 TEAM 5 AgriTech - All Rights Reserved</small>
+  </footer>
+
+  <script src="../static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
